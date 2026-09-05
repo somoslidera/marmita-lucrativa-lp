@@ -1,0 +1,4 @@
+{
+  "redirects": [{ "source": "/", "destination": "/marmitalucrativa", "permanent": false }],
+  "headers": [{ "source": "/marmitalucrativa/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }]
+}

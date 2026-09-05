@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#F7F3EC" />
+<title>Marmita Lucrativa | O preço certo de cada marmita, no seu celular</title>
+<meta name="description" content="App para quem já vende marmita: monta a ficha, soma produto e embalagem, desconta iFood, maquininha e imposto e mostra o preço que precisa estar no cardápio. Pagamento único de R$ 47." />
+<meta property="og:title" content="Marmita Lucrativa" />
+<meta property="og:description" content="Você sabe quanto sobra de cada marmita que vende? O app calcula o custo real e o preço certo para balcão e delivery. R$ 47, sem mensalidade." />
+<meta property="og:image" content="https://www.programalucroeliberdade.com.br/marmitalucrativa/assets/og.jpg" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231D3573'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23C2A875'%3EM%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="preload" as="image" href="/marmitalucrativa/assets/tabela.png" fetchpriority="high" />
+
+<style>
+:root{
+  --paper:#F7F3EC;
+  --paper-2:#EFE8DB;
+  --paper-3:#E6DECD;
+  --ink:#17203A;
+  --ink-2:#3A4460;
+  --muted:#6B7384;
+  --line:#DDD5C4;
+  --navy:#1D3573;
+  --navy-deep:#10203F;
+  --navy-ink:#0B1730;
+  --gold:#A48A57;
+  --gold-soft:#C2A875;
+  --gold-pale:#F1E7D2;
+  --red:#C8463B;
+  --red-bg:#FBE9E7;
+  --green:#1E9E6A;
+  --green-bg:#E5F4EC;
+  --amber:#C9892A;
+  --shadow:0 1px 2px rgba(23,32,58,.06),0 12px 32px rgba(23,32,58,.10);
+  --shadow-lg:0 2px 4px rgba(23,32,58,.08),0 30px 70px rgba(23,32,58,.22);
+  --radius:16px;
+  --w:1160px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:17px;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+.hero .wrap>*,.conta .wrap>*,.oferta .wrap>*,.quem .wrap>*,.modular .wrap>*,.tour .item>*,.steps>*,.visual,.frame,.browser{min-width:0}
+a{color:inherit}
+.serif{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;letter-spacing:-.015em}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-weight:600;line-height:1.08;letter-spacing:-.02em;color:var(--ink)}
+h1{font-size:clamp(40px,5.4vw,66px)}
+h2{font-size:clamp(32px,4vw,48px);margin:16px 0 20px}
+h3{font-size:26px;font-weight:600;line-height:1.2}
+.lead{font-size:clamp(18px,1.5vw,20.5px);color:var(--ink-2);max-width:56ch}
+.hl{background:linear-gradient(transparent 62%,var(--gold-pale) 62%);padding:0 .06em}
+.underline{position:relative;white-space:nowrap}
+.underline svg{position:absolute;left:0;right:0;bottom:-.08em;width:100%;height:.28em}
+.underline svg path{fill:none;stroke:var(--gold);stroke-width:5;stroke-linecap:round}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:18px 30px;border-radius:12px;font-weight:700;font-size:17px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .15s ease;white-space:nowrap}
+.btn-primary{background:var(--navy);color:#fff;box-shadow:0 10px 24px rgba(29,53,115,.28)}
+.btn-primary:hover{background:var(--navy-deep);transform:translateY(-1px);box-shadow:0 14px 30px rgba(29,53,115,.34)}
+.btn-primary svg{width:18px;height:18px}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);padding:16px 26px}
+.btn-ghost:hover{border-color:var(--ink);background:#fff}
+.btn-gold{background:var(--gold);color:#fff;box-shadow:0 10px 24px rgba(164,138,87,.35)}
+.btn-gold:hover{background:#8f7748;transform:translateY(-1px)}
+.btn-lg{padding:22px 40px;font-size:19px;border-radius:14px}
+.micro{font-size:13.5px;color:var(--muted);margin-top:14px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.micro span{display:inline-flex;align-items:center;gap:6px}
+.micro svg{width:14px;height:14px;color:var(--green)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(247,243,236,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(221,213,196,.6)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:baseline;gap:8px;text-decoration:none}
+.brand b{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:26px;letter-spacing:-.02em;color:var(--navy)}
+.brand i{font-style:normal;font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:17px;color:var(--gold);letter-spacing:.01em}
+nav .links{display:flex;gap:28px;font-size:15px;font-weight:500;color:var(--ink-2)}
+nav .links a{text-decoration:none}
+nav .links a:hover{color:var(--navy)}
+nav .btn{padding:12px 20px;font-size:15px;border-radius:10px}
+
+/* hero */
+.hero{padding:72px 0 40px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:auto -20% -40% -20%;height:70%;background:radial-gradient(60% 60% at 70% 50%,rgba(29,53,115,.10),transparent 70%);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;position:relative}
+.hero h1{margin:22px 0 22px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;align-items:center}
+
+.visual{position:relative;min-height:520px}
+.browser{background:#fff;border-radius:14px;box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid rgba(23,32,58,.08);transform:perspective(1800px) rotateY(-6deg) rotateX(2deg);transform-origin:left center}
+.browser .bar{height:34px;background:#EEF0F4;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid #E1E4EA}
+.browser .bar i{width:10px;height:10px;border-radius:50%;background:#D5D9E2}
+.browser .bar i:first-child{background:#EF6B5E}.browser .bar i:nth-child(2){background:#F3BE50}.browser .bar i:nth-child(3){background:#61C454}
+.browser .bar span{margin-left:14px;flex:1;height:18px;border-radius:6px;background:#fff;font-size:11px;color:#9AA1B1;display:flex;align-items:center;padding:0 10px;font-family:Inter,sans-serif}
+.browser img{width:100%}
+.callout{position:absolute;right:-8px;bottom:56px;width:300px;background:#fff;border-radius:14px;box-shadow:var(--shadow-lg);padding:18px 20px;border-left:4px solid var(--red);animation:float 6s ease-in-out infinite}
+.callout small{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:6px}
+.callout b{display:block;font-size:15.5px;color:var(--ink);margin-bottom:8px}
+.callout .row{display:flex;justify-content:space-between;font-size:14px;color:var(--ink-2);padding:3px 0}
+.callout .row strong{font-variant-numeric:tabular-nums}
+.callout .row.red strong{color:var(--red)}
+.callout .row.navy strong{color:var(--navy)}
+.callout .diff{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--ink-2)}
+.callout .diff strong{color:var(--red);font-size:18px;font-family:'Fraunces',Georgia,serif}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.phone{position:absolute;left:-22px;bottom:-30px;width:200px;border-radius:30px;background:#0E1626;padding:10px;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.08)}
+.phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:70px;height:20px;background:#0E1626;border-radius:12px;z-index:2}
+.phone img{border-radius:22px;width:100%}
+
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;background:var(--paper-2)}
+.strip .wrap{display:flex;flex-wrap:wrap;gap:14px 40px;justify-content:center;font-size:14.5px;font-weight:500;color:var(--ink-2)}
+.strip span{display:inline-flex;align-items:center;gap:9px}
+.strip svg{width:18px;height:18px;color:var(--gold)}
+
+/* receipt section */
+.conta{background:var(--navy-ink);color:#E8EDF6}
+.conta .eyebrow{color:var(--gold-soft)}
+.conta .eyebrow::before{background:var(--gold-soft)}
+.conta h2{color:#fff}
+.conta .lead{color:#B9C3DA}
+.conta .wrap{display:grid;grid-template-columns:1fr 440px;gap:64px;align-items:center}
+.receipt{background:#FBF8F1;color:var(--ink);border-radius:6px;padding:30px 30px 26px;box-shadow:0 40px 80px rgba(0,0,0,.45);position:relative;font-variant-numeric:tabular-nums;transform:rotate(1.2deg)}
+.receipt::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:12px;background:linear-gradient(-45deg,transparent 6px,#FBF8F1 0) 0 0/16px 16px repeat-x,linear-gradient(45deg,transparent 6px,#FBF8F1 0) 0 0/16px 16px repeat-x}
+.receipt .head{text-align:center;border-bottom:1px dashed #C9C1B0;padding-bottom:14px;margin-bottom:14px}
+.receipt .head b{font-family:'Fraunces',Georgia,serif;font-size:20px;display:block}
+.receipt .head span{font-size:12.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.receipt .l{display:flex;justify-content:space-between;padding:7px 0;font-size:15.5px;font-family:'Inter',sans-serif}
+.receipt .l span:first-child{color:var(--ink-2)}
+.receipt .l.neg span:last-child{color:var(--red)}
+.receipt .l.big{border-top:1px dashed #C9C1B0;margin-top:8px;padding-top:14px;font-weight:700;font-size:17px}
+.receipt .l.big span:last-child{font-family:'Fraunces',Georgia,serif;font-size:24px}
+.receipt .note{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.45}
+.receipt .stamp{position:absolute;right:18px;top:80px;transform:rotate(-12deg);border:3px solid var(--red);color:var(--red);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:13px;padding:6px 10px;border-radius:6px;opacity:.85;mix-blend-mode:multiply}
+.conta .facts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:36px}
+.conta .fact{border-left:2px solid var(--gold-soft);padding-left:16px}
+.conta .fact b{display:block;font-family:'Fraunces',Georgia,serif;font-size:34px;line-height:1;color:#fff;margin-bottom:6px;font-weight:600}
+.conta .fact span{font-size:14px;color:#B9C3DA}
+
+/* signals */
+.sinais .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:44px}
+.sinal{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start}
+.sinal .n{font-family:'Fraunces',Georgia,serif;font-size:30px;color:var(--gold);line-height:1;font-weight:500}
+.sinal b{display:block;font-size:18px;margin-bottom:6px;letter-spacing:-.01em}
+.sinal p{color:var(--ink-2);font-size:15.5px}
+.sinal.wide{grid-column:1/-1;background:var(--gold-pale);border-color:#E3D6B6}
+
+/* steps */
+.como{background:var(--paper-2)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:52px}
+.step{position:relative}
+.step .shot{background:#0E1626;border-radius:28px;padding:9px;box-shadow:var(--shadow);width:min(100%,300px);margin:0 auto 26px}
+.step .shot img{border-radius:20px}
+.step .k{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:8px}
+.step h3{margin-bottom:10px;font-size:24px}
+.step p{color:var(--ink-2);font-size:15.5px}
+.step p b{color:var(--ink)}
+
+/* tour */
+.tour .item{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:center;padding:56px 0;border-top:1px solid var(--line)}
+.tour .item:first-of-type{border-top:0;padding-top:24px}
+.tour .item:nth-child(even){grid-template-columns:1.2fr 1fr}
+.tour .item:nth-child(even) .txt{order:2}
+.tour .txt h3{font-size:30px;margin:12px 0 14px}
+.tour .txt p{color:var(--ink-2)}
+.tour .txt ul{list-style:none;margin-top:18px;display:grid;gap:10px}
+.tour .txt li{display:flex;gap:10px;font-size:15.5px;color:var(--ink-2)}
+.tour .txt li svg{flex:none;width:18px;height:18px;color:var(--green);margin-top:3px}
+.frame{background:#fff;border-radius:14px;box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid rgba(23,32,58,.08)}
+.frame img{width:100%}
+.tag{display:inline-block;white-space:nowrap;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:var(--gold-pale);color:var(--gold)}
+
+/* modular */
+.modular{background:var(--navy);color:#E8EDF6;overflow:hidden;position:relative}
+.modular::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 80% at 100% 0%,rgba(194,168,117,.18),transparent 70%)}
+.modular .wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.modular .eyebrow{color:var(--gold-soft)}.modular .eyebrow::before{background:var(--gold-soft)}
+.modular h2{color:#fff}
+.modular p{color:#C7D0E4}
+.modtable{background:#fff;color:var(--ink);border-radius:14px;box-shadow:var(--shadow-lg);overflow:hidden;font-size:15px}
+.modtable .t{padding:16px 20px;border-bottom:1px solid #EEE9DD;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.modtable .t span{font-size:12px;color:var(--muted);font-weight:500}
+.modtable .r{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;padding:12px 20px;border-bottom:1px solid #F1EDE3;align-items:center;font-variant-numeric:tabular-nums}
+.modtable .r.h{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;background:#FAF7F0}
+.modtable .r b{font-weight:600}
+.modtable .r em{font-style:normal;color:var(--red);font-weight:700}
+.modtable .r .ok{color:var(--muted)}
+.modtable .f{padding:14px 20px;background:var(--red-bg);color:#8E2F27;font-size:14px;font-weight:600}
+
+/* offer */
+.oferta{padding:110px 0}
+.oferta .wrap{display:grid;grid-template-columns:1fr 480px;gap:56px;align-items:start}
+.oferta ul{list-style:none;margin-top:28px;display:grid;gap:14px}
+.oferta li{display:flex;gap:14px;align-items:flex-start;font-size:16.5px;color:var(--ink-2)}
+.oferta li svg{flex:none;width:22px;height:22px;color:var(--navy);margin-top:2px}
+.oferta li b{color:var(--ink)}
+.card{background:#fff;border-radius:22px;box-shadow:var(--shadow-lg);padding:38px 36px;border:1px solid rgba(23,32,58,.06);position:sticky;top:96px}
+.card .p{font-family:'Fraunces',Georgia,serif;font-weight:700;color:var(--navy);display:flex;align-items:baseline;gap:6px;letter-spacing:-.03em;margin:4px 0 4px}
+.card .p small{font-size:26px;font-weight:600}
+.card .p b{font-size:78px;line-height:1}
+.card .p i{font-style:normal;font-size:26px;font-weight:600}
+.card .once{font-size:14px;color:var(--muted);margin-bottom:22px}
+.card .btn{width:100%}
+.card .g{margin-top:22px;display:flex;gap:14px;align-items:center;padding:16px;border-radius:12px;background:var(--green-bg);color:#125E40;font-size:14px;line-height:1.4}
+.card .g svg{flex:none;width:28px;height:28px}
+.card .pay{margin-top:18px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.card .pay span{padding:4px 10px;border:1px solid var(--line);border-radius:999px}
+.card .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.card .top .tag{background:var(--navy);color:#fff}
+
+/* author */
+.quem{background:var(--paper-2)}
+.quem .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.quem .stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.quem .stat{background:#fff;border-radius:14px;padding:20px;border:1px solid var(--line)}
+.quem .stat b{display:block;font-family:'Fraunces',Georgia,serif;font-size:32px;color:var(--navy);line-height:1;margin-bottom:6px;font-weight:600}
+.quem .stat span{font-size:14px;color:var(--ink-2)}
+.quem .quote{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144;font-size:clamp(26px,2.6vw,34px);line-height:1.25;letter-spacing:-.015em;color:var(--ink);font-weight:500}
+.quem .quote::before{content:"“";color:var(--gold);font-size:1.4em;line-height:0;vertical-align:-.3em;margin-right:.05em}
+.quem .who{margin-top:22px;display:flex;align-items:center;gap:14px}
+.quem .who .av{width:52px;height:52px;border-radius:50%;background:var(--navy);color:var(--gold-soft);font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center}
+.quem .who b{display:block}
+.quem .who span{font-size:14px;color:var(--muted)}
+
+/* faq */
+.faq .wrap{max-width:820px}
+.faq details{border-top:1px solid var(--line);padding:6px 0}
+.faq details:last-of-type{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 0;font-weight:600;font-size:18px;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:'Fraunces',Georgia,serif;font-size:28px;color:var(--gold);flex:none;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--ink-2);padding:0 0 20px;max-width:64ch}
+.faq details p b{color:var(--ink)}
+
+/* final */
+.final{background:var(--navy-ink);color:#fff;text-align:center;padding:120px 0}
+.final h2{color:#fff;max-width:18ch;margin:16px auto 22px}
+.final p{color:#B9C3DA;max-width:52ch;margin:0 auto}
+.final .btn{margin-top:36px}
+.final .micro{justify-content:center;color:#8FA0C4}
+footer{background:var(--navy-ink);color:#7F8DAB;font-size:13px;padding:36px 0 44px;border-top:1px solid rgba(255,255,255,.08)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center}
+footer a{color:#B9C3DA;text-decoration:none}
+footer a:hover{color:#fff}
+footer .legal{width:100%;font-size:12px;line-height:1.6;color:#5F6D8C;margin-top:8px;max-width:90ch}
+
+/* sticky mobile cta */
+.sticky{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(247,243,236,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+.sticky .btn{width:100%;padding:16px}
+
+@media (max-width:1020px){
+  .hero .wrap,.conta .wrap,.oferta .wrap,.quem .wrap,.modular .wrap{grid-template-columns:1fr}
+  .tour .item,.tour .item:nth-child(even){grid-template-columns:1fr}
+  .tour .item:nth-child(even) .txt{order:0}
+  .card{position:static}
+  .visual{min-height:0;margin-top:20px}
+  .browser{transform:none}
+  .phone{display:none}
+  .callout{right:12px;bottom:-24px;width:260px}
+  .steps{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  section{padding:72px 0}
+  .hero{padding:44px 0 60px}
+  h1{font-size:clamp(36px,10vw,44px)}
+  nav .links{display:none}
+  nav .btn{display:none}
+  .sinais .grid{grid-template-columns:1fr}
+  .conta .facts{grid-template-columns:1fr 1fr;gap:14px}
+  .conta .fact b{font-size:27px;white-space:nowrap}
+  .receipt{transform:none;padding:24px 20px}
+  .receipt .stamp{top:12px;right:8px;font-size:11px;padding:4px 8px}
+  .card{padding:30px 22px}
+  .card .p b{font-size:64px}
+  .sticky{display:block}
+  footer{padding-bottom:110px}
+  .final{padding-bottom:140px}
+  .callout{position:static;width:auto;margin-top:16px;animation:none}
+  .quem .stats{grid-template-columns:1fr 1fr}
+  .quem .stat b{font-size:26px}
+  .modtable .r{grid-template-columns:1.15fr 1fr 1fr;font-size:14px;padding:12px 14px}
+  .modtable .r>*:nth-child(2){display:none}
+  .modtable .t,.modtable .f{padding-left:14px;padding-right:14px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#"><b>Marmita</b><i>Lucrativa</i></a>
+    <div class="links">
+      <a href="#conta">A conta</a>
+      <a href="#como">Como funciona</a>
+      <a href="#dentro">O que tem dentro</a>
+      <a href="#faq">Dúvidas</a>
+    </div>
+    <a class="btn btn-primary" href="#oferta" data-checkout>Quero o app por R$ 47</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Para quem já vende marmita</span>
+      <h1>Você sabe quanto sobra de <span class="underline">cada marmita<svg viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M2 8 C 50 2, 120 12, 198 5"/></svg></span> que vende?</h1>
+      <p class="lead">A maioria não sabe. Cobra o que o vizinho cobra, vende bastante e mesmo assim o dinheiro não aparece no fim do mês. O Marmita Lucrativa calcula o custo real de cada marmita e o preço certo para balcão, iFood e qualquer outro canal. Direto no seu celular.</p>
+      <div class="cta">
+        <a class="btn btn-primary btn-lg" href="#oferta" data-checkout>Quero o app por R$ 47 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#como">Ver como funciona</a>
+      </div>
+      <div class="micro">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Pagamento único</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Sem mensalidade</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Acesso na hora</span>
+      </div>
+    </div>
+
+    <div class="visual">
+      <div class="browser">
+        <div class="bar"><i></i><i></i><i></i><span>ml.somoslidera.com.br</span></div>
+        <img src="/marmitalucrativa/assets/tabela.png" width="1600" height="1025" alt="Tabela de preços do Marmita Lucrativa mostrando o preço ideal de cada marmita por canal" />
+      </div>
+      <div class="callout">
+        <small>Marmita G · Mista</small>
+        <b>Hoje você cobra R$ 27,90 no balcão</b>
+        <div class="row"><span>Custo (produtos + embalagem)</span><strong>R$ 11,53</strong></div>
+        <div class="row red"><span>CMV real</span><strong>42,7%</strong></div>
+        <div class="row navy"><span>Preço para ficar em 30%</span><strong>R$ 39,90</strong></div>
+        <div class="diff">Ficam na mesa <strong>R$ 12,00</strong> por marmita vendida.</div>
+      </div>
+      <div class="phone"><img src="/marmitalucrativa/assets/mob-dashboard.png" width="600" height="1298" alt="Painel do app no celular" loading="lazy" /></div>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="wrap">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>Feito para usar no celular</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z"/></svg>Nada para instalar, abre pelo link</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M4 15l4-4 4 3 8-8"/></svg>Loja de exemplo já montada</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Preço da primeira marmita em minutos</span>
+  </div>
+</div>
+
+<!-- A CONTA -->
+<section class="conta" id="conta">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">A conta que ninguém faz</span>
+      <h2>Para onde vai o dinheiro de uma marmita de R$ 29,90 no iFood</h2>
+      <p class="lead">Essa é a Marmita M de carne moída que vem na loja de exemplo do app. Parece que sobra R$ 10,69. Mas 42,8% do que entrou líquido virou custo de produto, e marmita saudável fica em até 30%. É dessa sobra que ainda saem gás, aluguel, entregador e o seu salário.</p>
+      <div class="facts">
+        <div class="fact"><b>R$ 42,90</b><span>é o preço que o app calcula para essa marmita no iFood, com a comissão de 27% já paga</span></div>
+        <div class="fact"><b>R$ 5.200</b><span>por mês deixam de entrar em uma marmitaria que vende 400 dessas com o preço de hoje</span></div>
+      </div>
+    </div>
+    <div class="receipt">
+      <div class="stamp">Preço errado</div>
+      <div class="head"><b>Marmita M · Carne moída</b><span>venda pelo iFood · 1 unidade</span></div>
+      <div class="l"><span>Preço no cardápio</span><span>R$ 29,90</span></div>
+      <div class="l neg"><span>Comissão do iFood (27%)</span><span>- R$ 8,07</span></div>
+      <div class="l neg"><span>Imposto (6%)</span><span>- R$ 1,79</span></div>
+      <div class="l neg"><span>Produtos e embalagem</span><span>- R$ 9,35</span></div>
+      <div class="l big"><span>Sobra</span><span>R$ 10,69</span></div>
+      <div class="l"><span>CMV sobre o que entrou líquido</span><span style="color:var(--red);font-weight:700">42,8%</span></div>
+      <p class="note">Regra da casa: até 30%. Para chegar lá, essa marmita precisa custar R$ 42,90 no iFood, ou R$ 32,90 no balcão.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SINAIS -->
+<section class="sinais">
+  <div class="wrap">
+    <span class="eyebrow">Sinais de preço errado</span>
+    <h2>Se algum desses parece com o seu negócio, o preço está errado</h2>
+    <p class="lead">Não é falta de venda. É a conta que nunca foi feita marmita por marmita.</p>
+    <div class="grid">
+      <div class="sinal"><div class="n">01</div><div><b>Vende muito e o dinheiro não aparece</b><p>A cozinha não para, o WhatsApp não para, e no fim do mês sobra o suficiente para pagar as contas e começar de novo.</p></div></div>
+      <div class="sinal"><div class="n">02</div><div><b>O preço foi copiado do vizinho</b><p>Só que o vizinho compra em outro lugar, usa outra gramatura e talvez também esteja no prejuízo sem saber.</p></div></div>
+      <div class="sinal"><div class="n">03</div><div><b>Cobra o mesmo no balcão e no iFood</b><p>A plataforma leva de 15% a 27% antes de você ver o dinheiro. O mesmo preço nos dois lugares significa que um deles está errado.</p></div></div>
+      <div class="sinal"><div class="n">04</div><div><b>Reajusta com medo e perde noite de sono</b><p>Sem saber o custo real, todo aumento é um chute. Aumenta pouco por medo de perder cliente, e continua no vermelho.</p></div></div>
+      <div class="sinal wide"><div class="n">05</div><div><b>A marmita que o cliente monta é a que mais dá prejuízo</b><p>Escolhe a proteína, escolhe o tamanho, paga o mesmo preço. No dia em que todo mundo pede a opção mais cara, a margem vai embora. O app resolve isso de um jeito específico, mostramos mais abaixo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="como" id="como">
+  <div class="wrap">
+    <span class="eyebrow">Como funciona</span>
+    <h2>Três passos até o preço certo</h2>
+    <p class="lead">Nada de planilha. Você cadastra o que compra, monta a marmita e o app faz a conta que você nunca teve tempo de fazer.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="shot"><img src="/marmitalucrativa/assets/mob-produtos.png" width="600" height="1298" alt="Lista de produtos no celular" loading="lazy" /></div>
+        <div class="k">Passo 1</div>
+        <h3>Cadastre o que você compra</h3>
+        <p>Arroz, feijão, frango, óleo, embalagem. Com <b>rendimento de verdade</b>: 1 kg de arroz cru vira 2,6 kg cozido, 1 kg de peito de frango vira 720 g grelhado. É isso que faz o custo na tela ser o custo real, e não o da nota fiscal.</p>
+      </div>
+      <div class="step">
+        <div class="shot"><img src="/marmitalucrativa/assets/mob-fichas.png" width="600" height="1298" alt="Fichas de marmita no celular" loading="lazy" /></div>
+        <div class="k">Passo 2</div>
+        <h3>Monte a ficha de cada marmita</h3>
+        <p>Quantas gramas de cada item, qual embalagem, como monta. O app soma tudo e mostra <b>o custo por marmita</b>, com o gráfico de qual produto pesa mais. Cadastrou uma vez, vale para sempre.</p>
+      </div>
+      <div class="step">
+        <div class="shot"><img src="/marmitalucrativa/assets/mob-calc.png" width="600" height="1298" alt="Preço ideal por canal no celular" loading="lazy" /></div>
+        <div class="k">Passo 3</div>
+        <h3>Veja o preço certo por canal</h3>
+        <p>Balcão desconta a maquininha. iFood desconta a comissão. O app mostra <b>o preço ideal de cada marmita em cada canal</b>, com o preço de hoje logo abaixo, e você aplica com um toque.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOUR -->
+<section class="tour" id="dentro">
+  <div class="wrap">
+    <span class="eyebrow">O que tem dentro</span>
+    <h2>Seis telas. Nenhuma sobrando.</h2>
+    <p class="lead">O app foi tirado de um sistema completo de gestão de restaurante e ficou só com o que o dono de marmitaria usa para decidir preço.</p>
+
+    <div class="item">
+      <div class="txt">
+        <span class="tag">Painel</span>
+        <h3>Quem está fora da meta e quem traz mais dinheiro</h3>
+        <p>Abre o app e já sabe onde mexer. Custo médio, preço médio, quantas marmitas estão dentro da meta de CMV e quanto sobra no mês.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Alerta em vermelho para marmita acima do limite</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Ranking de sobra por mês, marmita por marmita</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Atalho para a calculadora em um toque</li>
+        </ul>
+      </div>
+      <div class="frame"><img src="/marmitalucrativa/assets/painel.png" width="1600" height="1025" alt="Painel do Marmita Lucrativa" loading="lazy" /></div>
+    </div>
+
+    <div class="item">
+      <div class="txt">
+        <span class="tag">Precificação</span>
+        <h3>Uma marmita por vez, ou todas de uma vez</h3>
+        <p>Na calculadora você escolhe a marmita, define a meta (CMV alvo ou margem de contribuição) e vê para onde vai cada real. Na tabela, todas as marmitas por todos os canais, com o botão de aplicar em todas.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Arredondamento comercial: ,90, ,99, múltiplo de 0,50 ou inteiro</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Sempre arredonda para cima, para não ficar abaixo da meta</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Até 3 plataformas de delivery, cada uma com a sua comissão</li>
+        </ul>
+      </div>
+      <div class="frame"><img src="/marmitalucrativa/assets/calc.png" width="1600" height="1025" alt="Calculadora de preço do Marmita Lucrativa" loading="lazy" /></div>
+    </div>
+
+    <div class="item">
+      <div class="txt">
+        <span class="tag">Engenharia de menu</span>
+        <h3>O que vende bem e dá lucro, o que vende bem e dá prejuízo</h3>
+        <p>Cada marmita cai em um dos quatro quadrantes: estrela, popular, potencial ou crítica. Você descobre qual promover, qual reajustar e qual tirar do cardápio sem dó.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Cruza popularidade com margem, automaticamente</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Basta informar quantas vende por mês de cada uma</li>
+        </ul>
+      </div>
+      <div class="frame"><img src="/marmitalucrativa/assets/engenharia.png" width="1600" height="1025" alt="Engenharia de menu do Marmita Lucrativa" loading="lazy" /></div>
+    </div>
+
+    <div class="item">
+      <div class="txt">
+        <span class="tag">Marmitas</span>
+        <h3>A ficha de cada marmita, pronta para a cozinha</h3>
+        <p>Gramatura de cada item, embalagem discriminada, modo de preparo passo a passo e o padrão de finalização. Serve para calcular o preço e para a equipe montar igual todo dia.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Preparados com rendimento: arroz cozido, frango grelhado, feijão pronto</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Botão de sugerir preço ideal dentro da própria ficha</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Imprime a ficha para deixar na parede da cozinha</li>
+        </ul>
+      </div>
+      <div class="frame"><img src="/marmitalucrativa/assets/fichas.png" width="1600" height="1025" alt="Fichas de marmita no Marmita Lucrativa" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULAR -->
+<section class="modular">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Marmita que o cliente monta</span>
+      <h2>O preço precisa cobrir a escolha mais cara, não a média</h2>
+      <p class="lead">Quando o cliente escolhe a proteína e o tamanho, o preço é um só, mas o custo muda a cada pedido. Precificar pela opção padrão quebra no dia em que todo mundo pede bife. O app monta a marmita modular, mostra a opção mais barata, a padrão e a mais cara de cada módulo, e precifica pela combinação mais cara. Quando a diferença fica grande demais para embutir, ele avisa que é hora de cobrar à parte.</p>
+    </div>
+    <div class="modtable">
+      <div class="t">Marmita do dia <span>modular · 3 módulos</span></div>
+      <div class="r h"><span>Módulo</span><span>Mais barata</span><span>Padrão</span><span>Mais cara</span></div>
+      <div class="r"><b>Proteína</b><span class="ok">Ovo · R$ 1,10</span><span>Frango · R$ 2,45</span><em>Bife · R$ 5,67</em></div>
+      <div class="r"><b>Tamanho</b><span class="ok">P · R$ 2,36</span><span>M · R$ 3,02</span><em>G · R$ 3,10</em></div>
+      <div class="r"><b>Acompanhamento</b><span class="ok">Salada · R$ 0,38</span><span>Farofa · R$ 0,64</span><em>Purê · R$ 0,56</em></div>
+      <div class="r"><b>Custo da marmita</b><span class="ok">R$ 3,84</span><span>R$ 6,11</span><em>R$ 9,33</em></div>
+      <div class="f">A combinação mais cara custa R$ 3,22 a mais que a padrão. O preço de R$ 32,90 no balcão cobre as duas.</div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section class="oferta" id="oferta">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">O que você leva</span>
+      <h2>Tudo isso por R$ 47. Uma vez só.</h2>
+      <p class="lead">Menos do que o prejuízo de um dia vendendo com o preço errado. Você compra, cria a conta com o mesmo e-mail e entra. Ninguém no meio.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg><span><b>Acesso ao app Marmita Lucrativa</b>, no celular e no computador, pelo link, sem instalar nada</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg><span><b>Calculadora e tabela de preços</b> por canal: balcão, iFood e mais duas plataformas, cada uma com a sua comissão</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg><span><b>Fichas de marmita ilimitadas</b>, com produtos, preparados com rendimento, embalagem e modo de preparo</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg><span><b>Marmita modular</b>, para a marmita em que o cliente escolhe, precificada pela combinação mais cara</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg><span><b>Painel e engenharia de menu</b>, para saber o que reajustar, o que promover e o que tirar</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg><span><b>Loja de exemplo completa</b>: 42 produtos, 19 preparados e 11 marmitas com custo real, para você ver funcionando antes de cadastrar a sua</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg><span><b>Parâmetros da sua realidade</b>: imposto, meta de CMV, bandeiras de cartão, arredondamento do preço</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg><span><b>Seus dados salvos na nuvem</b>, com atualizações do app incluídas</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="top"><span class="tag">Pagamento único</span><span style="font-size:13px;color:var(--muted)">Kiwify · compra segura</span></div>
+      <div class="p"><small>R$</small><b>47</b><i>,00</i></div>
+      <div class="once">Sem mensalidade. Sem renovação. Acesso liberado logo após a confirmação.</div>
+      <a class="btn btn-gold btn-lg" href="#" data-checkout>Quero o Marmita Lucrativa</a>
+      <div class="g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg><span><b>7 dias de garantia.</b> Entrou, cadastrou, não gostou? Pede o reembolso pela Kiwify e devolvemos tudo.</span></div>
+      <div class="pay"><span>Pix</span><span>Cartão</span><span>Boleto</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUEM FEZ -->
+<section class="quem">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Quem fez</span>
+      <h2>A mesma conta que fazemos dentro de restaurante há 20 anos</h2>
+      <p class="lead">O Marmita Lucrativa nasceu do sistema de gestão que a Lidera usa nas consultorias. Tiramos tudo o que o dono de marmitaria não precisa e deixamos só a parte que decide preço. A regra de CMV até 30%, o desconto de canal e a precificação pela pior combinação são as mesmas que aplicamos nos clientes.</p>
+      <div class="stats">
+        <div class="stat"><b>+20</b><span>anos dedicados à gestão de restaurantes</span></div>
+        <div class="stat"><b>+150</b><span>restaurantes atendidos em consultoria</span></div>
+        <div class="stat"><b>R$ 156M</b><span>em faturamento gerenciado</span></div>
+        <div class="stat"><b>+5.000</b><span>profissionais de cozinha e salão treinados</span></div>
+      </div>
+    </div>
+    <div>
+      <p class="quote">Nunca vi marmitaria quebrar por falta de cliente. Vi muita quebrar vendendo bem, com um preço que ninguém tinha calculado.</p>
+      <div class="who"><div class="av">CS</div><div><b>Charles Simon</b><span>Especialista em gestão de restaurantes · Lidera</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <span class="eyebrow">Dúvidas</span>
+    <h2>O que quem vende marmita pergunta</h2>
+    <details open>
+      <summary>Preciso cadastrar todos os produtos antes de ver um preço?</summary>
+      <p>Não. A calculadora aceita o custo digitado à mão, então você pode ver o preço da primeira marmita em um minuto. O cadastro completo é o que faz o custo ser exato e atualizar sozinho quando o arroz subir de preço, mas dá para fazer aos poucos.</p>
+    </details>
+    <details>
+      <summary>Funciona no celular?</summary>
+      <p>Foi feito para o celular primeiro. Barra de navegação embaixo, botões grandes, tudo em uma tela. Também abre no computador, pelo mesmo link, com os mesmos dados.</p>
+    </details>
+    <details>
+      <summary>Tem mensalidade?</summary>
+      <p>Não. É um pagamento único de R$ 47 e pronto. Sem renovação, sem plano, sem surpresa no cartão.</p>
+    </details>
+    <details>
+      <summary>Serve para quentinha, marmita congelada, fitness, executiva?</summary>
+      <p>Serve para qualquer marmita que tenha custo de produto e embalagem. Você define os itens, a gramatura e os canais de venda. A loja de exemplo vem com marmita tradicional, fit, executiva, vegetariana, kids e feijoada de sexta.</p>
+    </details>
+    <details>
+      <summary>Vendo pelo WhatsApp e no balcão, sem iFood. Ainda vale?</summary>
+      <p>Vale, e a conta fica até mais simples. O balcão desconta só a maquininha (você informa as bandeiras que aceita) e o imposto. Se um dia entrar em uma plataforma, é só cadastrar a comissão e o app calcula o preço de lá.</p>
+    </details>
+    <details>
+      <summary>Preciso entender de planilha ou de CMV?</summary>
+      <p>Não. O app já vem com a regra da casa configurada (CMV até 30%, arredondar para ,90) e explica cada número na tela. Se quiser ajustar, muda em Configurações. Se não quiser, funciona do jeito que vem.</p>
+    </details>
+    <details>
+      <summary>Como recebo o acesso?</summary>
+      <p>Depois da confirmação do pagamento, você recebe o link do app. Na primeira vez, crie a sua conta <b>com o mesmo e-mail usado na compra</b>. É assim que o app reconhece a sua liberação. Usar outro e-mail é o único jeito de não entrar.</p>
+    </details>
+    <details>
+      <summary>E se eu não gostar?</summary>
+      <p>Você tem 7 dias para pedir o reembolso direto pela Kiwify, sem precisar explicar o motivo.</p>
+    </details>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--gold-soft)">Amanhã tem marmita de novo</span>
+    <h2>Que seja pelo preço certo.</h2>
+    <p>Em uma hora você cadastra as suas marmitas mais vendidas e descobre quais estão pagando para trabalhar. Por R$ 47, uma vez.</p>
+    <a class="btn btn-gold btn-lg" href="#" data-checkout>Quero o app por R$ 47</a>
+    <div class="micro">
+      <span>Pagamento único</span><span>·</span><span>7 dias de garantia</span><span>·</span><span>Acesso na hora</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#" style="color:#fff"><b style="color:#fff">Marmita</b><i>Lucrativa</i></a>
+    <div>Um produto da <a href="https://somoslidera.com.br" target="_blank" rel="noopener">Lidera</a> · Já comprou? <a href="https://ml.somoslidera.com.br" target="_blank" rel="noopener">Entrar no app</a></div>
+    <p class="legal">Marmita Lucrativa é um aplicativo de cálculo de custo e precificação. Os valores mostrados nesta página vêm da loja de exemplo que acompanha o app e servem para ilustrar a conta; o resultado no seu negócio depende dos seus custos, dos seus canais e das suas vendas. Este site não é afiliado ao Facebook, à Meta ou ao iFood. © <span id="ano"></span> Lidera. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<div class="sticky"><a class="btn btn-primary" href="#" data-checkout>Quero o app por R$ 47</a></div>
+
+<script>
+// ===== Checkout =====
+// Troque pela URL do produto na Kiwify (Produtos > Links de pagamento).
+var CHECKOUT_URL = 'https://pay.kiwify.com.br/kp8yNpn';
+
+function checkoutComUtm(){
+  try{
+    var out = new URL(CHECKOUT_URL), cur = new URL(window.location.href);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','src','sck'].forEach(function(k){
+      var v = cur.searchParams.get(k); if(v) out.searchParams.set(k, v);
+    });
+    return out.toString();
+  }catch(e){ return CHECKOUT_URL; }
+}
+document.querySelectorAll('[data-checkout]').forEach(function(a){
+  a.addEventListener('click', function(ev){
+    // Botões que apontam para #oferta só rolam até a oferta; os demais vão ao checkout.
+    if(a.getAttribute('href') === '#oferta') return;
+    ev.preventDefault();
+    if(window.fbq){ try{ fbq('track','InitiateCheckout',{value:47.00,currency:'BRL',content_name:'Marmita Lucrativa'}); }catch(e){} }
+    window.location.href = checkoutComUtm();
+  });
+});
+document.getElementById('ano').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
